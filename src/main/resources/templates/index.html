@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas Médicas</title>
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Agendar Citas Médicas</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="toggleForm()">Agendar Cita</a></li>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Inicio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div id="form-container" style="display:none;">
+            <form action="/agendar" method="post">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" required>
+
+                <button type="submit">Agendar</button>
+            </form>
+        </div>
+
+        <h2>Citas Agendadas:</h2>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+            </tr>
+            <th:block th:each="cita : ${citas}">
+                <tr>
+                    <td th:text="${cita.nombre}"></td>
+                    <td th:text="${cita.fecha}"></td>
+                    <td th:text="${cita.hora}"></td>
+                </tr>
+            </th:block>
+        </table>
+    </main>
+
+    <footer>
+        <p>Derechos Reservados por &copy; Arley Torres Isabel Alvarez 2024</p>
+    </footer>
+
+    <script>
+        function toggleForm() {
+            const formContainer = document.getElementById("form-container");
+            formContainer.style.display = formContainer.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</body>
+</html>
